@@ -46,15 +46,26 @@ class SitesecureSiteRecord
         //Encode the array into JSON.
         if ($data){
             $jsonDataEncoded = json_encode($data);
-            echo $jsonDataEncoded;
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 	        //Tell cURL that we want to send a POST request.
 	        curl_setopt($ch, CURLOPT_POST, 1);
         }
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);         
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  
 
-        return json_decode(curl_exec($ch), $assoc = TRUE);
+        $raw_res = curl_exec($ch);
+
+        if(!$raw_res){
+        	$res = array(
+        		"status" => "error",
+        		"type" => "ConnectionError",
+        		"message" => "Can't connect to SiteSecure server",
+        	)
+        }else{
+        	$res = json_decode($raw_res, $assoc = TRUE);
+        }   
+
+        return $res;
     }
 
 	/**

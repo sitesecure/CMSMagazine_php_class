@@ -43,6 +43,7 @@ Array
     [type] => ConnectionError
     [message] => Can't connect to SiteSecure server
 )
+```
 - Сайт уже зарегистрирован в системе (при попытке зарегистрировать домен)
 ```php
 Array
@@ -51,6 +52,7 @@ Array
     [type] => ActiveRecord::RecordInvalid
     [message] => Error: Возникли ошибки: Name Этот домен уже добавлен
 )
+```
 - Сайт не зарегистрирован (при попытке получения статуса безопасности или смены тарифа)
 ```php
 Array

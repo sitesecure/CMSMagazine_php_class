@@ -60,8 +60,8 @@ class SitesecureSiteRecord
         		"status" => "error",
         		"type" => "ConnectionError",
         		"message" => "Can't connect to SiteSecure server",
-        	)
-        }else{
+        	);
+        } else {
         	$res = json_decode($raw_res, $assoc = TRUE);
         }   
 
